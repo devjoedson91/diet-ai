@@ -10,6 +10,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import ControlInput from "@/components/control-input";
 import { useRouter } from "next/navigation";
+import { useDataStore } from "@/store/data";
 
 const formSchema = z.object({
   name: z.string({ message: "Informe o nome" }),
@@ -53,10 +54,17 @@ export default function Step() {
     setValue("age", ageMask(age));
   }, [age]);
 
+  const setPageOne = useDataStore((state) => state.setPageOne);
+
   function handleSubmit(data: z.infer<typeof formSchema>) {
-    router.push(
-      `/create?step-data=${encodeURIComponent(JSON.stringify(data))}`
-    );
+    setPageOne({
+      name: data.name,
+      age: data.age,
+      height: data.height,
+      weight: data.weight,
+    });
+
+    router.push("/create");
   }
 
   return (
