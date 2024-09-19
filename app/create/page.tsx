@@ -1,95 +1,58 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Header from "@/components/header";
-import { useSearchParams } from "next/navigation";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { Button } from "@/components/ui/button";
-import { Check, ChevronDown } from "lucide-react";
-import {
-  Command,
-  CommandGroup,
-  CommandItem,
-  CommandList,
-} from "@/components/ui/command";
-import { cn } from "@/lib/utils";
+import ControlSelect from "@/components/control-select";
+import { z } from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Form } from "@/components/ui/form";
+import ScreenButton from "@/components/screen-button";
 
-interface StepDataProps {
-  name: string;
-  age: string;
-  heigth: string;
-  weigth: string;
-}
-
-const frameworks = [
+const gender = [
   {
-    value: "next.js",
-    label: "Next.js",
+    value: "male",
+    label: "Masculino",
   },
   {
-    value: "sveltekit",
-    label: "SvelteKit",
+    value: "female",
+    label: "Feminino",
   },
 ];
 
+const formSchema = z.object({
+  gender: z.string({ message: "Selecione o sexo" }),
+  objective: z.string({ message: "Informe o objetivo" }),
+  level: z
+    .string({ message: "Informe o nível de atividade física" })
+    .min(1, { message: "Informe a altura" }),
+});
+
 export default function Create() {
-  const searchParams = useSearchParams();
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+  });
 
-  const search = searchParams.get("step-data");
-
-  const [stepData, setStepData] = useState<StepDataProps>({} as StepDataProps);
-
-  const [open, setOpen] = useState(false);
-  const [value, setValue] = useState("");
-
-  useEffect(() => {
-    setStepData(JSON.parse(search || "{}"));
-  }, [search]);
+  function handleSubmit(data: z.infer<typeof formSchema>) {}
 
   return (
     <div className="flex flex-col h-screen">
       <Header title="Finalizando dieta" step="Passo 2" />
-      <div className="flex flex-1 p-4">
-        <Popover open={open} onOpenChange={setOpen}>
-          <PopoverTrigger asChild>
-            <Button
-              variant="outline"
-              role="combobox"
-              aria-expanded={open}
-              className="w-full justify-between text-black"
-            >
-              {value
-                ? frameworks.find((framework) => framework.value === value)
-                    ?.label
-                : "Select framework..."}
-              <ChevronDown size={20} />
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent className="w-[356px] p-0">
-            <Command>
-              <CommandList>
-                <CommandGroup>
-                  {frameworks.map((framework) => (
-                    <CommandItem
-                      key={framework.value}
-                      value={framework.value}
-                      onSelect={(currentValue) => {
-                        setValue(currentValue === value ? "" : currentValue);
-                        setOpen(false);
-                      }}
-                    >
-                      {framework.label}
-                    </CommandItem>
-                  ))}
-                </CommandGroup>
-              </CommandList>
-            </Command>
-          </PopoverContent>
-        </Popover>
+      <div className="flex flex-1">
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(handleSubmit)}
+            className="w-full p-4 flex flex-col gap-5"
+          >
+            <ControlSelect
+              control={form.control}
+              label="Sexo"
+              options={gender}
+              name="gender"
+            />
+
+            <ScreenButton type="submit">Gerar dieta</ScreenButton>
+          </form>
+        </Form>
       </div>
     </div>
   );
