@@ -1,11 +1,4 @@
 {
   "extends": ["next/core-web-vitals", "next/typescript"],
-  "rules": {
-    "no-unused-vars": "off",
-    "no-empty-function": "off",
-    "no-param-reassign": "off",
-    "func-names": "off",
-    "no-underscore-dangle": "off",
-    "no-invalid-this": "off"
-  }
+  "rules": { "no-empty-interface": false }
 }
