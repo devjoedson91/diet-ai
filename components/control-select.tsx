@@ -19,7 +19,7 @@ interface OptionsProps {
 }
 
 interface ControlSelectProps {
-  control: any;
+  control: any; // eslint-disable-line @typescript-eslint/no-explicit-any
   label: string;
   name: string;
   options: OptionsProps[];

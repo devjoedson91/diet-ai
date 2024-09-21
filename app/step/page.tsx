@@ -36,7 +36,7 @@ export default function Step() {
     resolver: zodResolver(formSchema),
   });
 
-  const { setValue, watch, setError } = form;
+  const { setValue, watch } = form;
 
   const height = watch("height");
   const weight = watch("weight");

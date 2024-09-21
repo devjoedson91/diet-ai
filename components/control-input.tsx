@@ -8,7 +8,7 @@ import {
 import { Input } from "./ui/input";
 
 interface ControlInputProps {
-  control: any;
+  control: any; // eslint-disable-line @typescript-eslint/no-explicit-any
   label: string;
   name: string;
   placeholder: string;
