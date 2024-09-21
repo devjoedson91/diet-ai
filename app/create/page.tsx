@@ -77,11 +77,11 @@ export default function Create() {
   return (
     <div className="flex flex-col h-screen">
       <Header title="Finalizando dieta" step="Passo 2" />
-      <div className="flex flex-1">
+      <div className="flex flex-1 px-6 py-4">
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(handleSubmit)}
-            className="w-full p-4 flex flex-col gap-5"
+            className="w-full flex flex-col gap-5"
           >
             <ControlSelect
               control={form.control}

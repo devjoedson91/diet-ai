@@ -55,7 +55,7 @@ export default function ControlSelect({
                   <ChevronDown size={20} />
                 </Button>
               </PopoverTrigger>
-              <PopoverContent className="min-w-[356px] p-0">
+              <PopoverContent className="p-0">
                 <Command>
                   <CommandList>
                     <CommandGroup>

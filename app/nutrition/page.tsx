@@ -96,7 +96,7 @@ export default function Nutrition() {
           </Button>
         </CardContent>
       </Card>
-      <div className="flex flex-col gap-4 flex-1 p-4">
+      <div className="flex flex-col gap-4 flex-1 px-6 py-4">
         {data && Object.keys(data).length > 0 && (
           <>
             <h1 className="text-xl font-bold">{data.nome}</h1>

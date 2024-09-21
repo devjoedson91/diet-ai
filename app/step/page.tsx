@@ -70,11 +70,11 @@ export default function Step() {
   return (
     <div className="flex flex-col h-screen">
       <Header title="Vamos começar" step="Passo 1" />
-      <div className="flex-1 flex">
+      <div className="flex-1 flex px-6 py-4">
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(handleSubmit)}
-            className="w-full p-4 flex flex-col gap-5"
+            className="w-full flex flex-col gap-5"
           >
             <ControlInput
               name="name"
