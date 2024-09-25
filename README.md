@@ -9,9 +9,9 @@ O aplicativo gera uma dieta personalizada para o usuário com base em dados como
 
 - ReactJS / Next 14 / Typescript / Tailwind / Zustand / React Hook Form / Zod
 
-## Tecnologias Back end
+## Tecnologias Back end 🧠
 
-- Fastify / Typescript / Node JS 🧠
+- Fastify / Typescript / Node JS
 
 ## Layout Mobile
 
